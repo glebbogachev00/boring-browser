@@ -148,5 +148,3 @@ MIT License
     ░        CORPORATION            ░
     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ```
-
-**SAMO© AS AN END TO CORPORATE BROWSING**
