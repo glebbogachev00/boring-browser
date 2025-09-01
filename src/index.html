@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="light">
+    <div id="onboarding" class="onboarding hidden">
+        <div class="onboarding-content">
+            <h1>Welcome to Boring Browser Co.</h1>
+            <div id="step1" class="step">
+                <h2>Step 1 of 3</h2>
+                <p>Choose your tag (like a street artist)</p>
+                <div class="tag-input-wrapper">
+                    <span>[</span>
+                    <input type="text" id="userTag" maxlength="12" placeholder="rebel">
+                    <span>]©</span>
+                </div>
+                <p class="example">e.g., [rebel]©, [void]©, [ghost]©</p>
+                <button onclick="nextStep()">Next</button>
+            </div>
+            <div id="step2" class="step hidden">
+                <h2>Step 2 of 3</h2>
+                <p>Pick your aesthetic</p>
+                <div class="theme-options">
+                    <label class="theme-option">
+                        <input type="radio" name="theme" value="light" checked>
+                        <div class="theme-preview light-preview">Light</div>
+                    </label>
+                    <label class="theme-option">
+                        <input type="radio" name="theme" value="dark">
+                        <div class="theme-preview dark-preview">Dark</div>
+                    </label>
+                    <label class="theme-option">
+                        <input type="radio" name="theme" value="terminal">
+                        <div class="theme-preview terminal-preview">Terminal</div>
+                    </label>
+                </div>
+                <button onclick="nextStep()">Next</button>
+            </div>
+            <div id="step3" class="step hidden">
+                <h2>Step 3 of 3</h2>
+                <p>This browser collects zero data. Your business is your business.</p>
+                <p>Type your tag. Click things. Browse web.</p>
+                <p class="sarcasm">This will take 30 seconds. Maybe 45 if you're slow.</p>
+                <button onclick="finishOnboarding()">START BROWSING</button>
+                <a href="#" onclick="skipOnboarding()" class="skip-link">I know what I'm doing</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="browser" class="browser hidden">
+        <div class="address-bar">
+            <button id="backBtn" disabled>←</button>
+            <button id="forwardBtn" disabled>→</button>
+            <input type="text" id="urlInput" placeholder="where to, captain?">
+            <button id="goBtn">GO</button>
+            <button id="reloadBtn">↻</button>
+            <button id="settingsBtn">⚙</button>
+        </div>
+        
+        <div id="webview-container">
+            <webview id="webview" src="about:blank" partition="persist:main" allowpopups="false"></webview>
+            <div id="empty-state" class="empty-state">
+                <div class="empty-message" id="emptyMessage">What are we looking at today?</div>
+            </div>
+        </div>
+        
+        <div class="status-bar">
+            <span id="userTagDisplay"></span>
+            <span id="statusText">Ready</span>
+        </div>
+    </div>
+
+    <div id="settings" class="settings hidden">
+        <div class="settings-content">
+            <h2>Settings</h2>
+            <div class="setting-group">
+                <label>Your Tag:</label>
+                <div class="tag-input-wrapper">
+                    <span>[</span>
+                    <input type="text" id="settingsUserTag" maxlength="12">
+                    <span>]©</span>
+                </div>
+            </div>
+            <div class="setting-group">
+                <label>Theme:</label>
+                <div class="theme-options">
+                    <label><input type="radio" name="settingsTheme" value="light"> Light</label>
+                    <label><input type="radio" name="settingsTheme" value="dark"> Dark</label>
+                    <label><input type="radio" name="settingsTheme" value="terminal"> Terminal</label>
+                </div>
+            </div>
+            <div class="setting-group">
+                <label>Accent Color:</label>
+                <input type="color" id="accentColor" value="#0066cc">
+            </div>
+            <div class="setting-group">
+                <label>Custom Logo:</label>
+                <input type="file" id="logoUpload" accept="image/*">
+            </div>
+            <button onclick="saveSettings()">Save</button>
+            <button onclick="closeSettings()">Close</button>
+            <div class="about">
+                <p>Boring Browser Co. Version 1.0. We make browsers.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="easterEgg" class="easter-egg hidden">You found something.</div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
